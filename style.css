@@ -37,76 +37,105 @@
 	animation-delay: 0.3s;
 }
 
-body, html {
-  margin: 0;
-  padding: 0;
+body,
+html {
+	margin: 0;
+	padding: 0;
 }
 
-header, main {
-  margin: 0 2rem;
+header,
+main {
+	margin: 0 2rem;
 }
 
 details {
 	display: block;
-  width: 100%;
+	width: 100%;
+	margin-bottom: -1px;
 }
 
 details summary {
 	cursor: pointer;
-  display: grid;
-  grid-template-columns: 1fr 2rem 1fr;
+	display: grid;
+	grid-template-columns: 1fr 2rem 1fr;
 }
 
 details summary p {
-  margin: 0;
+	margin: 0;
 }
 
 details summary p:nth-of-type(1) {
-  text-align: right;
-    margin-right: 1rem;
+	text-align: right;
+	padding: 0 1rem;
+  width: max-content;
+  margin: 0 0 0 auto;
 }
 
 details summary p:nth-of-type(2) {
-  border: 1px solid red;
-  text-align: center;
+	border: 1px solid grey;
+	text-align: center;
 }
 
+details summary:hover p:nth-of-type(2) {
+	border: 1px solid red;
+	text-align: center;
+  z-index: 1;
+}
+
+
 details summary p:nth-of-type(3) {
-  text-align: left;
-  margin-left: 1rem;
+	text-align: left;
+	padding: 0 1rem;
+  width: max-content;
 }
 
 details[open] summary p:nth-of-type(2) {
-  color: red;
+	color: red;
+}
+
+details[open] summary p {
+	border: 1px solid red;
+}
+
+details[open] summary p:nth-of-type(1) {
+	border: 1px solid red;
+  	border-style: solid none solid solid;
+}
+
+details[open] summary p:nth-of-type(2) {
+	border-style: solid none;
+}
+
+details[open] summary p:nth-of-type(3) {
+	border-style: solid solid solid none;
 }
 
 .versus__container {
-  display: grid;
-  grid-template-columns: repeat(2, 50%);
-  margin: 0 0 2rem 0;
-  border-bottom: 1px solid red;
+	display: grid;
+	grid-template-columns: repeat(2, 50%);
+	margin: 0 0 2rem 0;
+	border-bottom: 1px solid red;
 }
 
 .versus--item {
-    padding-bottom: 1rem;
+	padding-bottom: 1rem;
 }
 
 .versus--item:first-of-type {
-  border-right: 1px solid red;
-  padding-right: 2rem;
+	border-right: 1px solid red;
+	padding-right: 2rem;
 }
 
 .versus--item:nth-of-type(2) {
-    padding-left: 2rem;
+	padding-left: 2rem;
 }
 
 .versus--item span {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
 }
 
 .versus--item iframe {
-  width: 100%;
+	width: 100%;
 }
