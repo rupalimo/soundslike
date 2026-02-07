@@ -101,7 +101,7 @@ header {
 .run {
 	width: 1px;
 	height: 100vh;
-	z-index: -1;
+	z-index: 2;
 	background: red;
 	top: 0;
 	left: 0;
@@ -159,7 +159,7 @@ details[open] summary p:nth-of-type(2) {
 }
 
 details[open] summary p {
-	border: 1px solid red;
+	border: 1px dotted red;
 }
 
 details[open] summary p:nth-of-type(1) {
@@ -179,26 +179,16 @@ details[open] summary p:nth-of-type(3) {
 	display: grid;
 	grid-template-columns: repeat(2, 50%);
 	margin: 0 0 2rem 0;
-	/* border-bottom: 1px solid red; */
+height: max-content;
 }
 
 .versus--item {
-	padding-bottom: 1rem;
-	display: grid;
-	grid-template-columns: 1fr 20%;
+	padding: 2rem 0;
 }
 
 .versus--item:hover {
 	color: red;
 	cursor: pointer;
-}
-
-.versus--item:nth-of-type(odd) {
-	grid-template-columns: 1fr 20%;
-}
-
-.versus--item:nth-of-type(even) {
-	grid-template-columns: 20% 1fr;
 }
 
 .versus--item:first-of-type {
@@ -211,36 +201,62 @@ details[open] summary p:nth-of-type(3) {
 }
 
 .--audio {
-	width: 100%;
-	display: grid;
-	grid-template-rows: 5rem auto;
+  display: flex;
+  flex-direction: column;
 	grid-row: 1;
 }
+
+audio {
+  position: absolute;
+  width: calc(50% - 5rem);
+  height: 3ch;
+  border-radius: 1rem;
+  mix-blend-mode: screen;
+  margin: 0.5rem;
+}
+
 
 .--meta {
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-	grid-row: 1;
+	display: grid;
+  grid-template-columns: repeat(6, calc(100% / 6));
+  justify-content: space-between;
 }
 
-.versus--item:nth-of-type(odd) .--audio {
-	justify-content: right;
+.--meta p {
+ margin: 0 0.25rem 0.25rem 0.25rem;
 }
 
-.versus--item:nth-of-type(odd) .--meta {
-	text-align: right;
-	grid-column: 2;
+.--meta p::before {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.5rem;
+	position: absolute;
+	transform: translateY(-0.75rem);
+	line-height: 2ch;
+	cursor: default;
+  color: grey;
+  text-transform: uppercase;
 }
 
-.versus--item:nth-of-type(even) .--audio {
-	grid-column: 2;
-	justify-content: left;
+.--meta p:nth-of-type(1)::before {
+  content:"title";
 }
 
-.versus--item:nth-of-type(even) .--meta {
-	text-align: left;
-	grid-column: 1;
+.--meta p:nth-of-type(2)::before {
+  content:"duration";
+}
+
+.--meta p:nth-of-type(3)::before {
+  content:"release date";
+}
+
+.--meta p:nth-of-type(4)::before {
+  content:"album";
+}
+.--meta p:nth-of-type(5)::before {
+  content:"producer";
+}
+.--meta p:nth-of-type(6)::before {
+  content:"country";
 }
 
 .versus--item .--audio img {
