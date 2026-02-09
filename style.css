@@ -38,15 +38,15 @@
 
 @keyframes run {
 	0% {
-		transform: translateX(calc(100vw - 2rem - 1px));
+		transform: translateX(calc(100vw - 1px));
 	}
 
 	50% {
-		transform: translateX(calc(0vw - 2rem));
+		transform: translateX(0vw);
 	}
 
 	100% {
-		transform: translateX(calc(100vw - 2rem - 1px));
+		transform: translateX(calc(100vw - 1px));
 	}
 }
 
@@ -73,6 +73,7 @@
 :root {
 	--primary-font: 'Arial Narrow', sans-serif;
 	--secondary-font: 'Arial', sans-serif;
+	--serif: 'Times New Roman', serif;
 	--text: black;
 	--link: red;
 	--hover: red;
@@ -95,23 +96,13 @@
 	text-rendering: optimizeLegibility;
 }
 
+html {
+	scroll-behavior: smooth;
+}
 body,
 html {
 	margin: 0;
 	padding: 0;
-}
-
-header,
-main {
-	margin: 0 2rem;
-}
-
-header {
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
-	align-items: baseline;
-	position: relative;
 }
 
 .type {
@@ -134,9 +125,35 @@ header {
 	position: absolute;
 }
 
-header h1 {
+header,
+main {
+	margin: 0 2rem;
+}
+
+header {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: baseline;
+	position: relative;
+	/* justify-content: flex-start; */
+}
+
+header h5 {
 	font-weight: normal;
-	text-transform: capitalize;
+	/* text-transform: uppercase; */
+	border: 1px dotted var(--grey);
+	padding: 1.25rem 0;
+	border-radius: 100%;
+	width: 2.5em;
+	text-align: center;
+	font-family: var(--secondary-font);
+	font-size: 0.7rem;
+	color: transparent;
+}
+
+header h5 + h5 {
+	margin-left: -0.5rem;
 }
 
 details {
@@ -153,6 +170,7 @@ details summary {
 
 details summary p {
 	margin: 0;
+	padding-bottom: 2px;
 }
 
 details summary p:nth-of-type(1) {
@@ -163,14 +181,15 @@ details summary p:nth-of-type(1) {
 }
 
 details summary p:nth-of-type(2) {
-	border: 1px solid grey;
+	border: 1px solid transparent;
 	text-align: center;
 }
 
 details summary:hover p:nth-of-type(2) {
-	border: 1px solid red;
+	border: 1px solid transparent;
 	text-align: center;
 	z-index: 1;
+	color: red;
 }
 
 details summary p:nth-of-type(3) {
@@ -179,25 +198,14 @@ details summary p:nth-of-type(3) {
 	width: max-content;
 }
 
-details[open] summary p:nth-of-type(2) {
-	color: red;
-}
-
 details[open] summary p {
-	border: 1px dotted red;
-}
-
-details[open] summary p:nth-of-type(1) {
-	border: 1px solid red;
-	border-style: solid none solid solid;
+	color: red;
+	transition: opacity 0.125s;
 }
 
 details[open] summary p:nth-of-type(2) {
-	border-style: solid none;
-}
-
-details[open] summary p:nth-of-type(3) {
-	border-style: solid solid solid none;
+	border: 1px solid var(--link);
+	color: red;
 }
 
 .versus__container {
@@ -211,9 +219,34 @@ details[open] summary p:nth-of-type(3) {
 	padding: 2rem 0;
 }
 
+.versus--item img {
+	filter: grayscale(100%) contrast(1);
+	background-color: var(--link);
+	mix-blend-mode: screen;
+}
+
 .versus--item:hover {
-	color: red;
 	cursor: pointer;
+}
+
+.versus--item:hover img {
+	transition: filter 1s;
+	filter: opacity(100%) contrast(1);
+	background: white;
+	mix-blend-mode: normal;
+
+}
+
+
+.versus--item:hover audio {
+	opacity: 1;
+  background: var(--link);
+  outline: var(--link);
+  border: 1px solid var(--link);
+}
+
+.versus--item:hover .--audio {
+	box-shadow: 12px 0 12px 24px red inset;
 }
 
 .versus--item:first-of-type {
@@ -229,6 +262,7 @@ details[open] summary p:nth-of-type(3) {
 	display: flex;
 	flex-direction: column;
 	grid-row: 1;
+	background: var(--link);
 }
 
 audio {
@@ -238,16 +272,22 @@ audio {
 	border-radius: 1rem;
 	mix-blend-mode: screen;
 	margin: 0.5rem;
+	z-index: 100;
+	opacity: 0;
 }
 
 .--meta {
 	display: grid;
-	grid-template-columns: repeat(6, calc(100% / 6));
+	grid-template-columns: 2fr repeat(5, 1fr);
 	justify-content: space-between;
+	font-size: 0.8rem;
 }
 
 .--meta p {
 	margin: 0 0.25rem 0.25rem 0.25rem;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
 }
 
 .--meta p::before {
@@ -283,6 +323,6 @@ audio {
 	content: 'country';
 }
 
-.versus--item .--audio img {
+.versus--item img {
 	width: 100%;
 }
